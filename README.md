@@ -13,7 +13,7 @@ A PHP + MySQL web application that demonstrates **user registration**, **login a
 5. [Step 4 — Start XAMPP Services](#-step-4--start-xampp-services)
 6. [Step 5 — Create the Database](#-step-5--create-the-database)
 7. [Step 6 — Run the Application](#-step-6--run-the-application)
-8. [Assignment — What You Need to Build](#-assignment--what-you-need-to-build)
+8. [Code Walkthrough Guides](#-code-walkthrough-guides)
 9. [Project Structure](#-project-structure)
 10. [How the Application Works](#-how-the-application-works)
 11. [Troubleshooting](#-troubleshooting)
@@ -224,87 +224,24 @@ http://localhost/your-folder-name/home.php
 
 ---
 
-## ✏️ Assignment — What You Need to Build
+## ✏️ Code Walkthrough Guides
 
-The project structure, HTML forms, CSS, and JavaScript are already provided. **Your job is to write the PHP logic.** Each file contains `TODO` comments that tell you exactly what to implement.
+Each PHP file has its own step-by-step guide that explains what to write and what every line does. **Work through them in order:**
 
-### Work through the files in this order:
+| # | Guide | File | What You'll Learn |
+|---|---|---|---|
+| 1️⃣ | [Database Connection](docs/1-db-connect.md) | `inc/db_connect.inc.php` | PDO, DSN, connecting to MySQL |
+| 2️⃣ | [Registration](docs/2-register.md) | `register.php` | `$_POST`, hashing passwords, `INSERT` queries, prepared statements |
+| 3️⃣ | [Login](docs/3-login.md) | `login.php` | `SELECT` queries, sessions, `$_SESSION`, redirects |
+| 4️⃣ | [Home Page](docs/4-home.md) | `home.php` / `home_old.php` | Reading sessions, `isset()`, ternary operator, `<?= ?>` |
+| 5️⃣ | [Logout](docs/5-logout.md) | `logout.php` | Destroying sessions, redirects |
+| 6️⃣ | [AJAX Helpers](docs/6-ajax-helpers.md) | `helper/is_logged_in.php` & `helper/logout_ajax.php` | `json_encode()`, AJAX endpoints, fetch API |
 
-### 1️⃣ Database Connection — `inc/db_connect.inc.php`
-Set up the PDO connection to MySQL. This file is used by every other PHP page.
-
-| TODO | What to Do |
-|---|---|
-| 1 | Create variables for host, user, password, and database name |
-| 2 | Build the DSN (Data Source Name) string |
-| 3 | Create a new `PDO` instance |
-| 4 | Set the default fetch mode to `PDO::FETCH_OBJ` |
-
-### 2️⃣ Registration — `register.php`
-Allow a new user to create an account.
-
-| TODO | What to Do |
-|---|---|
-| 1 | Check if the form was submitted (`$_SERVER['REQUEST_METHOD']`) |
-| 2 | Get email, first_name, last_name from `$_POST` |
-| 3 | Hash the password using `hash('sha512', ...)` |
-| 4 | Write a SQL `INSERT INTO` query with named placeholders |
-| 5 | Prepare and execute the query with PDO |
-| 6 | Check `$stmt->rowCount()` and echo a success or error message |
-
-### 3️⃣ Login — `login.php`
-Authenticate an existing user and start a session.
-
-| TODO | What to Do |
-|---|---|
-| 1 | Check if the form was submitted |
-| 2 | Get the email from `$_POST` |
-| 3 | Hash the password using `hash('sha512', ...)` |
-| 4 | Write a SQL `SELECT` query with named placeholders |
-| 5 | Prepare and execute the query with PDO |
-| 6 | If a match is found: start a session, store user data in `$_SESSION`, redirect to `home.php`. If not: show an error. |
-
-### 4️⃣ Home Page — `home.php`
-Display a welcome message based on session data.
-
-| TODO | What to Do |
-|---|---|
-| 1 | Start the session |
-| 2 | Show/hide Login vs. Logout links based on `$_SESSION` |
-| 3 | Set `$first_name` from session or use a default value |
-| 4 | Display the welcome message using `<?= ?>` |
-
-### 5️⃣ Logout — `logout.php`
-End the user's session and redirect.
-
-| TODO | What to Do |
-|---|---|
-| 1 | Start the session |
-| 2 | Destroy the session |
-| 3 | Redirect to `home.php` |
-
-### 6️⃣ AJAX Helpers — `helper/is_logged_in.php` & `helper/logout_ajax.php`
-These are called by JavaScript to check login status and log out without a page reload.
-
-**`is_logged_in.php`:**
-| TODO | What to Do |
-|---|---|
-| 1 | Start the session |
-| 2 | Return a JSON response: `{"status": "yes"}` or `{"status": "no"}` |
-
-**`logout_ajax.php`:**
-| TODO | What to Do |
-|---|---|
-| 1 | Start the session |
-| 2 | Destroy the session |
-| 3 | Return a JSON response: `{"status": "success"}` |
-
-### ✅ How to Know You're Done
-
-- [ ] You can **register** a new user and see "User successfully registered"
-- [ ] You can **log in** with that user and see your first name on the home page
-- [ ] You can **log out** and the page shows "New User!" or "Future User"
-- [ ] The Login/Logout links toggle correctly without a page reload (AJAX)
+Each guide includes:
+- ✅ The **complete code** to write
+- 🔍 A **line-by-line explanation** of what each line does and why
+- 📌 A summary of **key PHP concepts** introduced
+- ✅ **How to test** that it's working
 
 ### 📤 Submitting Your Work
 
